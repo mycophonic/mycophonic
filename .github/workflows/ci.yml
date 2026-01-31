@@ -11,29 +11,79 @@ permissions:
   contents: read
 
 jobs:
-  install:
-    name: Install formulas
-    runs-on: macos-15
+  lint:
+    name: Lint
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3  # v6.0.0
+        with:
+          fetch-depth: 0  # Full history for git-validation
+
+      - name: Set up Go
+        uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c  # v6.1.0
+        with:
+          go-version: '1.25.6'
+          cache: true
+
+      - name: Install dependencies
+        run: |
+          make install-dev-tools
+          sudo apt-get update -qq && sudo apt-get install -qq shellcheck yamllint
+
+      - name: Lint commits
+        if: github.event_name == 'pull_request'
+        env:
+          LINT_COMMIT_RANGE: origin/${{ github.base_ref }}..HEAD
+        run: make lint-commits
+
+      - name: Lint go.mod
+        run: make lint-mod
+
+      - name: Lint licenses (all platforms)
+        run: make lint-licenses-all
+
+      - name: Lint headers
+        run: make lint-headers
+
+      - name: Lint YAML
+        run: make lint-yaml
+
+      - name: Lint shell scripts
+        run: make lint-shell
+
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15, windows-2025]
     steps:
       - name: Checkout code
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3  # v6.0.0
 
-      - name: Update Homebrew
-        run: brew update
+      - name: Set up Go
+        uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c  # v6.1.0
+        with:
+          go-version: '1.25.6'
+          cache: true
 
-      - name: Register tap
-        run: |
-          mkdir -p "$(brew --repository)/Library/Taps/farcloser"
-          ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/farcloser/homebrew-mycota"
+      - name: Run unit tests
+        run: make test-unit
 
-      - name: Install and test formulas
+      - name: Run race detector tests
+        run: make test-unit-race
+
+  test-success:
+    name: Test
+    if: always()
+    needs: [test]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check test matrix results
         run: |
-          for formula in Formula/*.rb; do
-            name=$(basename "$formula" .rb)
-            echo "::group::Installing $name"
-            brew install --head --build-from-source "farcloser/mycota/$name"
-            echo "::endgroup::"
-            echo "::group::Testing $name"
-            brew test "farcloser/mycota/$name"
-            echo "::endgroup::"
-          done
+          if [[ "${{ needs.test.result }}" != "success" ]]; then
+            echo "Test matrix failed: ${{ needs.test.result }}"
+            exit 1
+          fi
