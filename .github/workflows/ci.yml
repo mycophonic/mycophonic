@@ -28,29 +28,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          make install-dev-tools
-          sudo apt-get update -qq && sudo apt-get install -qq shellcheck yamllint
+          make init-dev
 
-      - name: Lint commits
-        if: github.event_name == 'pull_request'
+      - name: Lint
         env:
-          LINT_COMMIT_RANGE: origin/${{ github.base_ref }}..HEAD
-        run: make lint-commits
-
-      - name: Lint go.mod
-        run: make lint-mod
-
-      - name: Lint licenses (all platforms)
-        run: make lint-licenses-all
-
-      - name: Lint headers
-        run: make lint-headers
-
-      - name: Lint YAML
-        run: make lint-yaml
-
-      - name: Lint shell scripts
-        run: make lint-shell
+          LINT_COMMIT_RANGE: ${{ github.event_name == 'pull_request' && format('origin/{0}..HEAD', github.base_ref) || 'main..HEAD' }}
+        run: make lint
 
   test:
     name: Test (${{ matrix.os }})

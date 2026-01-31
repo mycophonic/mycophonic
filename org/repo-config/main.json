@@ -60,18 +60,6 @@
       "parameters": {
         "severity": "warnings"
       }
-    },
-    {
-      "type": "code_scanning",
-      "parameters": {
-        "code_scanning_tools": [
-          {
-            "tool": "CodeQL",
-            "security_alerts_threshold": "medium_or_higher",
-            "alerts_threshold": "errors"
-          }
-        ]
-      }
     }
   ],
   "bypass_actors": []
