@@ -4,9 +4,9 @@
 
 ![Mycophonic](logo.jpg)
 
-Mycophonic is a modular, open source platform for building music management and playback applications. Audiophile-grade. Pure Go.
+Mycophonic is a modular, open source platform for building music management and playback applications. Audiophile-grade. Pure Go (*).
 
-The stack spans ALSA/CoreAudio interfaces, multi-room streaming, library management, and UI components.
+The stack spans ALSA/CoreAudio interfaces, multi-room streaming, audio analysis, DSP, library management, and UI components.
 
 ---
 
@@ -18,28 +18,28 @@ We will update this table as projects graduate.
 
 As of 2026/01/30, this is for hard-boiled developers only, sorry!
 
-| Project                                                          | Public? | Maturity  | Description                                                       |
-|------------------------------------------------------------------|---------|-----------|-------------------------------------------------------------------|
-| [agar](https://github.com/mycophonic/agar)                       | ✔       | α         | Test infrastructure and audio file generation                     |
-| [cordyceps](https://github.com/mycophonic/cordyceps)             | ✘       | α         | LLM infrastructure                                                |
-| [flac](https://github.com/mycophonic/flac)                       | ✔       | 0.1.0-dev | Optimized fork of https://github.com/mewkiz/flac                  |
-| [TBD](https://github.com/mycophonic/PLACEHOLDER)                 | ✘       | α         | ?                                                                 |
-| [gill](https://github.com/mycophonic/gill)                       | ✘       | α         | Metadata extraction and tagging                                   |
-| [haustorium](https://github.com/mycophonic/haustorium)           | ✔       | α         | PCM analysis and defect detection (clipping, silence, DC offset)  |
-| [homebrew-mycota](https://github.com/mycophonic/homebrew-mycota) | ✔       | 0.1.0-dev | Homebrew formulas for binaries                                    |
-| [hypha](https://github.com/mycophonic/hypha)                     | ✘       | α         | Library management, file organization, online metadata lookups    |
-| [mycelium](https://github.com/mycophonic/mycelium)               | ✘       | α         | Network playback: multi-room sync, zones, device federation       |
-| [mycophonic](https://github.com/mycophonic/mycophonic)           | ✔       | α         | This here, and the (future) website                               |
-| [primordium](https://github.com/mycophonic/primordium)           | ✔       | β         | Core facilities: network defaults, filesystem helpers, formatting |
-| [saprobe](https://github.com/mycophonic/saprobe)                 | ✔       | α         | Decoders: FLAC, ALAC, MP3, Ogg Vorbis (TBD: DSD, AAC, Opus)       |
-| [sporeprint](https://github.com/mycophonic/sporeprint)           | ✔       | α         | Audio fingerprinting (CGO: requires Chromaprint)                  |
-| [pileus](https://github.com/mycophonic/pileus)                   | ✘       | α         | User interfaces / web                                             |
+| Project                                                          | Public? | Maturity  | Description                                                               |
+|------------------------------------------------------------------|---------|-----------|---------------------------------------------------------------------------|
+| [agar](https://github.com/mycophonic/agar)                       | ✔       | α         | Test infrastructure and audio file generation                             |
+| [cordyceps](https://github.com/mycophonic/cordyceps)             | ✘       | α         | LLM infrastructure                                                        |
+| [flac](https://github.com/mycophonic/flac)                       | ✔       | 0.1.0-dev | Optimized fork of https://github.com/mewkiz/flac                          |
+| [TBD](https://github.com/mycophonic/PLACEHOLDER)                 | ✘       | α         | ?                                                                         |
+| [gill](https://github.com/mycophonic/gill)                       | ✘       | α         | Metadata extraction and tagging                                           |
+| [haustorium](https://github.com/mycophonic/haustorium)           | ✔       | α         | Audio signal analysis and defect detection (clipping, silence, DC offset) |
+| [homebrew-mycota](https://github.com/mycophonic/homebrew-mycota) | ✔       | 0.1.0-dev | Homebrew formulas for binaries                                            |
+| [hypha](https://github.com/mycophonic/hypha)                     | ✘       | α         | Library management, file organization, online metadata lookups            |
+| [mycelium](https://github.com/mycophonic/mycelium)               | ✘       | α         | Network playback: multi-room sync, zones, device federation               |
+| [mycophonic](https://github.com/mycophonic/mycophonic)           | ✔       | α         | This here, and the (future) website                                       |
+| [primordium](https://github.com/mycophonic/primordium)           | ✔       | β         | Core facilities: network defaults, filesystem helpers, formatting         |
+| [saprobe](https://github.com/mycophonic/saprobe)                 | ✔       | α         | Decoders: FLAC, ALAC, MP3, Ogg Vorbis (TBD: DSD, AAC, Opus)               |
+| [sporeprint](https://github.com/mycophonic/sporeprint)           | ✔       | α         | Audio fingerprinting (CGO: requires Chromaprint)                          |
+| [pileus](https://github.com/mycophonic/pileus)                   | ✘       | α         | User interfaces / web                                                     |
 
 ---
 
 ## Tech
 
-**Language:** Pure Go. No CGO except where OS-level access demands it (CoreAudio, ALSA, Chromaprint).
+**Language:** Pure Go. No CGO except where OS-level access demands it (CoreAudio, ALSA), or very localized exceptions (Chromaprint).
 
 **Platforms:** macOS and Linux are first-class. Windows support planned.
 
@@ -59,11 +59,9 @@ For library usage, `go get` individual projects as needed.
 
 Mycelium networks are decentralized, resilient, and interconnected underground systems that enable communication and resource sharing across vast distances.
 
-That's the architecture we're building.
+That's the architecture we're building. To audiophilia and beyond.
 
 Also, mushrooms are cool.
-
-To audiophilia and beyond.
 
 ---
 
