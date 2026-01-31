@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    name: Install formulas
+    runs-on: macos-15
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3  # v6.0.0
+
+      - name: Update Homebrew
+        run: brew update
+
+      - name: Register tap
+        run: |
+          mkdir -p "$(brew --repository)/Library/Taps/farcloser"
+          ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/farcloser/homebrew-mycota"
+
+      - name: Install and test formulas
+        run: |
+          for formula in Formula/*.rb; do
+            name=$(basename "$formula" .rb)
+            echo "::group::Installing $name"
+            brew install --head --build-from-source "farcloser/mycota/$name"
+            echo "::endgroup::"
+            echo "::group::Testing $name"
+            brew test "farcloser/mycota/$name"
+            echo "::endgroup::"
+          done
