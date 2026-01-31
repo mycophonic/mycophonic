@@ -14,21 +14,26 @@ The stack spans ALSA/CoreAudio interfaces, multi-room streaming, library managem
 
 Note that everything is currently under heavy development.
 
-We will update this table as project graduate.
+We will update this table as projects graduate.
 
 As of 2026/01/30, this is for hard-boiled developers only, sorry!
 
-| Project                                                | Maturity | Description                                                       |
-|--------------------------------------------------------|----------|-------------------------------------------------------------------|
-| [saprobe](https://github.com/mycophonic/saprobe)       | Alpha    | Decoders: FLAC, ALAC, MP3, Ogg Vorbis (TBD: DSD, AAC, Opus)       |
-| [gill](https://github.com/mycophonic/gill)             | Dev      | Metadata extraction and tagging                                   |
-| [haustorium](https://github.com/mycophonic/haustorium) | Alpha    | PCM analysis and defect detection (clipping, silence, DC offset)  |
-| [sporeprint](https://github.com/mycophonic/sporeprint) | Alpha    | Audio fingerprinting (CGO: requires Chromaprint)                  |
-| [hypha](https://github.com/mycophonic/hypha)           | Design   | Library management, file organization, online metadata lookups    |
-| [mycelium](https://github.com/mycophonic/mycelium)     | Dev      | Network playback: multi-room sync, zones, device federation       |
-| [pileus](https://github.com/mycophonic/pileus)         | Design   | User interfaces: CLI and web                                      |
-| [agar](https://github.com/mycophonic/agar)             | Alpha    | Test infrastructure and audio file generation                     |
-| [primordium](https://github.com/mycophonic/primordium) | Beta     | Core facilities: network defaults, filesystem helpers, formatting |
+| Project                                                          | Public? | Maturity  | Description                                                       |
+|------------------------------------------------------------------|---------|-----------|-------------------------------------------------------------------|
+| [agar](https://github.com/mycophonic/agar)                       | ✔       | α         | Test infrastructure and audio file generation                     |
+| [cordyceps](https://github.com/mycophonic/cordyceps)             | ✘       | α         | LLM infrastructure                                                |
+| [flac](https://github.com/mycophonic/flac)                       | ✔       | 0.1.0-dev | Optimized fork of https://github.com/mewkiz/flac                  |
+| [TBD](https://github.com/mycophonic/PLACEHOLDER)                 | ✘       | α         | ?                                                                 |
+| [gill](https://github.com/mycophonic/gill)                       | ✘       | α         | Metadata extraction and tagging                                   |
+| [haustorium](https://github.com/mycophonic/haustorium)           | ✔       | α         | PCM analysis and defect detection (clipping, silence, DC offset)  |
+| [homebrew-mycota](https://github.com/mycophonic/homebrew-mycota) | ✔       | 0.1.0-dev | Homebrew formulas for binaries                                    |
+| [hypha](https://github.com/mycophonic/hypha)                     | ✘       | α         | Library management, file organization, online metadata lookups    |
+| [mycelium](https://github.com/mycophonic/mycelium)               | ✘       | α         | Network playback: multi-room sync, zones, device federation       |
+| [mycophonic](https://github.com/mycophonic/mycophonic)           | ✔       | α         | This here, and the (future) website                               |
+| [primordium](https://github.com/mycophonic/primordium)           | ✔       | β         | Core facilities: network defaults, filesystem helpers, formatting |
+| [saprobe](https://github.com/mycophonic/saprobe)                 | ✔       | α         | Decoders: FLAC, ALAC, MP3, Ogg Vorbis (TBD: DSD, AAC, Opus)       |
+| [sporeprint](https://github.com/mycophonic/sporeprint)           | ✔       | α         | Audio fingerprinting (CGO: requires Chromaprint)                  |
+| [pileus](https://github.com/mycophonic/pileus)                   | ✘       | α         | User interfaces / web                                             |
 
 ---
 
