@@ -69,8 +69,8 @@ Also, mushrooms are cool.
 
 ### Why new foundations?
 
-Every media player reinvents the wheel. Decoders, taggers, library databases, streaming protocols—rebuilt from scratch,
-again and again. The collective waste of effort is staggering.
+Every media player reinvents the wheel. Decoders, taggers, library databases, streaming protocols.
+The collective waste of effort is staggering.
 
 We believe the core building blocks of audio software are solved problems, or should be.
 They should be shared infrastructure, not proprietary silos.
